@@ -3,12 +3,19 @@ package com.spring.services;
 import com.spring.exceptions.Authorities;
 import com.spring.exceptions.InvalidCredentials;
 import com.spring.exceptions.UnauthorizedUser;
-import com.spring.repo.UserRepository;
+import com.spring.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AuthorizationService {
-    UserRepository userRepository;
+
+    private final UserRepository userRepository;
+
+    public AuthorizationService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<Authorities> getAuthorities(String user, String password) {
         if (isEmpty(user) || isEmpty(password)) {
