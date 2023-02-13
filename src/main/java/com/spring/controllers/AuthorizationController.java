@@ -1,9 +1,10 @@
 package com.spring.controllers;
 
 import com.spring.exceptions.Authorities;
+import com.spring.repository.User;
 import com.spring.services.AuthorizationService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,9 +19,10 @@ public class AuthorizationController {
     }
 
     @GetMapping("/authorize")
-    public List<Authorities> getAuthorities(@RequestParam("user") String user,
-                                            @RequestParam("password") String password) {
-        return service.getAuthorities(user, password);
+    public List<Authorities> getAuthorities(@Valid User user) {
+        System.out.println(user.getUser());
+        System.out.println(user.getPassword());
+        return service.getAuthorities(user);
 
     }
 }
