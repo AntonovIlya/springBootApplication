@@ -12,8 +12,8 @@ public class UserRepository {
     public UserRepository() {
     }
 
-    public List<Authorities> getUserAuthorities(String user, String password) {
-        return switch (user) {
+    public List<Authorities> getUserAuthorities(User user) {
+        return switch (user.getUser()) {
             case ("admin") -> new ArrayList<>(List.of(Authorities.READ, Authorities.WRITE, Authorities.DELETE));
             case ("user") -> new ArrayList<>(List.of(Authorities.READ));
             default -> null;
